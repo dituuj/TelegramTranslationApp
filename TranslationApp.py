@@ -12,18 +12,18 @@ app = Client("my_account")
 
 
 @app.on_message(Filters.chat(RecieveCh) & Filters.photo & Filters.caption)
-def echo(client, message):
+def echoPT(client, message):
     translation = translator.translate(message.caption) + postScript
     app.send_photo(SendCh,message.photo.file_id, translation)
     return
 
 @app.on_message(Filters.chat(RecieveCh) & Filters.photo & ~Filters.caption)
-def echo(client, message):
+def echoP(client, message):
     app.send_photo(SendCh,message.photo.file_id)
     return
 
-@app.on_message(Filters.chat(RecieveCh) & Filters.text)
-def echo(client, message):
+@app.on_message(Filters.chat(RecieveCh) & Filters.text & ~Filters.photo)
+def echoT(client, message):
     translation = translator.translate(message.text) + postScript
     app.send_message(SendCh, translation)
     return
