@@ -2,7 +2,7 @@ from translate import Translator
 
 class AbstractTranslator:
     def translate(self, text):
-        pass
+        raise NotImplementedError
 
 class PythonTranslator(AbstractTranslator):
     def __init__(self):

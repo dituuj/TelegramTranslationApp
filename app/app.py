@@ -3,9 +3,9 @@ from pyrogram import Client, Filters
 post_script = "\n\n\n TranslatorBot via pyrogram"
 
 class TranslationApp:
-    def __init__(self, telegram_client, chat_id):
+    def __init__(self, telegram_client, chat_to_translate):
         self.telegram_client = telegram_client
-        self.chat_id = chat_id
+        self.chat_id = chat_to_translate
         self.consumers = []
         self.translators = []
 
@@ -19,7 +19,9 @@ class TranslationApp:
         for t in self.translators:
             result = t.translate(text)
             if result:
-                return result
+                return result + post_script
+        # TODO(walt): publish or alert this error message somewhere other than console
+        print('Error: all translators have failed!')
         return None
 
     def send_text(self, text):
@@ -33,7 +35,7 @@ class TranslationApp:
     def run(self):
         @self.telegram_client.on_message(Filters.chat(self.chat_id) & Filters.photo & Filters.caption)
         def echoPT(client, message):
-            translation = self.translate(message.caption) + post_script
+            translation = self.translate(message.caption)
             self.send_photo(message.photo.file_id, translation)
 
         @self.telegram_client.on_message(Filters.chat(self.chat_id) & Filters.photo & ~Filters.caption)
@@ -42,7 +44,7 @@ class TranslationApp:
 
         @self.telegram_client.on_message(Filters.chat(self.chat_id) & Filters.text & ~Filters.photo)
         def echoT(client, message):
-            translation = self.translate(message.text) + post_script
+            translation = self.translate(message.text)
             if translation:
                 self.send_text(translation)
 

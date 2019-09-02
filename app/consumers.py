@@ -1,9 +1,9 @@
 class Consumer:
     def send_photo(self, file_id, caption=None):
-        pass
+        raise NotImplementedError
 
     def send_text(self, text):
-        pass
+        raise NotImplementedError
 
 
 class TelegramConsumer(Consumer):
