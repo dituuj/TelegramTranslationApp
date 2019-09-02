@@ -3,6 +3,7 @@
 from os import getenv
 from pyrogram import Client
 from consumers import TelegramConsumer
+from translators import PythonTranslator
 from app import TranslationApp
 
 api_id = getenv('API_ID')
@@ -12,9 +13,13 @@ client = Client("my_account", api_id, api_id_hash)
 
 app = TranslationApp(client, 'me') # Replace 'me' with -1001173826177 for real HK channel
 
-app.add_consumers([
+app.add_consumers(
     # TelegramConsumer(app, -324271754), # HK Translation Chat
     TelegramConsumer(client, 'me'), # self, for testing
-])
+)
+
+app.add_translators(
+    PythonTranslator()
+)
 
 app.run()  # Automatically start() and idle()

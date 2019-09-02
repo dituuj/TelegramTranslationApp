@@ -6,7 +6,7 @@ class Consumer:
         pass
 
 
-class TelegramConsumer:
+class TelegramConsumer(Consumer):
     def __init__(self, client, chat_id):
         self.client = client
         self.chat_id = chat_id

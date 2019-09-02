@@ -1,7 +1,5 @@
 from pyrogram import Client, Filters
-from translate import Translator
 
-translator= Translator(to_lang="en", from_lang='zh')
 post_script = "\n\n\n TranslatorBot via pyrogram"
 
 class TranslationApp:
@@ -9,9 +7,20 @@ class TranslationApp:
         self.telegram_client = telegram_client
         self.chat_id = chat_id
         self.consumers = []
+        self.translators = []
 
     def add_consumers(self, *args):
-        self.consumers.extend(*args)
+        self.consumers.extend(args)
+
+    def add_translators(self, *args):
+        self.translators.extend(args)
+
+    def translate(self, text):
+        for t in self.translators:
+            result = t.translate(text)
+            if result:
+                return result
+        return None
 
     def send_text(self, text):
         for consumer in self.consumers:
@@ -24,7 +33,7 @@ class TranslationApp:
     def run(self):
         @self.telegram_client.on_message(Filters.chat(self.chat_id) & Filters.photo & Filters.caption)
         def echoPT(client, message):
-            translation = translator.translate(message.caption) + post_script
+            translation = self.translate(message.caption) + post_script
             self.send_photo(message.photo.file_id, translation)
 
         @self.telegram_client.on_message(Filters.chat(self.chat_id) & Filters.photo & ~Filters.caption)
@@ -33,7 +42,8 @@ class TranslationApp:
 
         @self.telegram_client.on_message(Filters.chat(self.chat_id) & Filters.text & ~Filters.photo)
         def echoT(client, message):
-            translation = translator.translate(message.text) + post_script
-            self.send_text(translation)
+            translation = self.translate(message.text) + post_script
+            if translation:
+                self.send_text(translation)
 
         self.telegram_client.run()
