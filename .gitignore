@@ -1,0 +1,4 @@
+.env
+**/__pycache__
+secrets.sh
+my_account.session
