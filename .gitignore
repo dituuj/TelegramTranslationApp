@@ -2,3 +2,4 @@
 **/__pycache__
 secrets.sh
 my_account.session
+**/passwords_file
