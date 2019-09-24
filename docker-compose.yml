@@ -1,0 +1,9 @@
+version: '3'
+services:
+  bot:
+    build: .
+    environment:
+      PROD: "true"
+      API_ID : "${API_ID}"
+      API_ID_HASH: "${API_ID_HASH}"
+      LOG_LEVEL: "${LOG_LEVEL}"
