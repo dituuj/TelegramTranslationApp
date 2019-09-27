@@ -16,7 +16,7 @@ client = Client("my_account", api_id, api_id_hash)
 app = TranslationApp(client, chat_to_translate='me') # Replace 'me' with -1001173826177 for real HK channel
 
 app.add_consumers(
-    # TelegramConsumer(app, -324271754), # HK Translation Chat
+    # TelegramConsumer(client, -324271754), # HK Translation Chat
     TelegramConsumer(client, 'me'), # self, for testing
 )
 
