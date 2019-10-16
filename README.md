@@ -36,13 +36,16 @@ The folder you ran `vagrant up` in will be mounted inside vagrant in the directo
 Do
 
 ```bash
-cd vagrant
+cd /vagrant
 ```
 
+To enter the project.
 
+To run the app you can do 
 
-
-
+```
+python3 app
+```
 
 ### Shutting down vagrant
 When you're done with the VM: 
