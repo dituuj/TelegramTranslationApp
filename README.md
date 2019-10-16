@@ -21,12 +21,31 @@ To start the box run
 vagrant up
 ```
 
+### Using vagrant
+
 To enter the box
 
 ```bash
 vagrant ssh
 ```
 
+This will bring you into a vagrant shell.
+
+The folder you ran `vagrant up` in will be mounted inside vagrant in the directory `/vagrant`. 
+
+Do
+
+```bash
+cd vagrant
+```
+
+
+
+
+
+
+### Shutting down vagrant
+When you're done with the VM: 
 To close the box
 
 ```bash
