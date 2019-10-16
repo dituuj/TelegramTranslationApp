@@ -7,3 +7,28 @@
 - Generate a Telegram API key and hash [here](https://my.telegram.org/apps), and export them to your environment either manually or through a `secrets.sh` file
 - Run the app with `python app`
 - Quit the app with `^C`
+
+
+## Vagrant setup
+
+1. install virtual box https://www.virtualbox.org/wiki/Downloads
+2. install vagrant https://www.vagrantup.com/downloads.html
+
+
+To start the box run
+
+```bash
+vagrant up
+```
+
+To enter the box
+
+```bash
+vagrant ssh
+```
+
+To close the box
+
+```bash
+vagrant destroy
+```
