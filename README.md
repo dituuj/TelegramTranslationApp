@@ -44,7 +44,7 @@ To enter the project.
 To run the app you can do 
 
 ```
-python3 app
+python3 /vagrant/app
 ```
 
 ### Shutting down vagrant
