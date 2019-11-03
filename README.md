@@ -49,7 +49,14 @@ python3 /vagrant/app
 
 ### Shutting down vagrant
 When you're done with the VM: 
-To close the box
+
+You can stop it using
+
+```bash
+vagrant halt
+```
+
+To destroy the box entirely you can do destory
 
 ```bash
 vagrant destroy
